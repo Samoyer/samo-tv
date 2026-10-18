@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Two interlocking silver ribbons; the narrow facets describe the fold. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#15263B" android:pathData="M34,4H74C94,4 104,14 104,34V74C104,94 94,104 74,104H34C14,104 4,94 4,74V34C4,14 14,4 34,4Z" />
+    <path android:fillColor="#00000000" android:strokeColor="#3D7894AE" android:strokeWidth="0.65" android:pathData="M34,4.5H74C93.7,4.5 103.5,14.3 103.5,34V74C103.5,93.7 93.7,103.5 74,103.5H34C14.3,103.5 4.5,93.7 4.5,74V34C4.5,14.3 14.3,4.5 34,4.5Z" />
+    <path android:fillColor="#BFD3E5" android:pathData="M32,84H59C75,84 85,75 85,61C85,47 75,39 59,39H50L58,52H60C67,52 71,55 71,61C71,67 67,71 60,71H40Z" />
+    <path android:fillColor="#FAFCFF" android:pathData="M76,24H49C33,24 23,33 23,47C23,61 33,69 49,69H58L50,56H48C41,56 37,53 37,47C37,41 41,37 48,37H68Z" />
+    <path android:fillColor="#7F9AB4" android:pathData="M50,39L58,52H65L57,39Z" />
+    <path android:fillColor="#C4D4E4" android:pathData="M50,56L58,69H51L43,56Z" />
+</vector>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_adapter_label">Samo TV 主页适配</string>
+    <string name="home_adapter_description">小米系统打开原电视桌面时，自动切回 Samo TV。只识别原桌面的窗口名称，不读取屏幕内容，不接收按键，不执行手势。可在 Samo TV 设置中随时暂停。</string>
+</resources>

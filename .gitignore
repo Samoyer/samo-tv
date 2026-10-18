@@ -1,0 +1,20 @@
+# Local toolchains, build output and caches
+.tooling/
+dist/
+build/
+evidence/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Private workspace material
+.private/
+.planning/
+research_*/
+
+# Local signing keys and environment files
+*.keystore
+*.jks
+.env
+.env.*
+!.env.example
