@@ -1,111 +1,83 @@
-# Samo TV
+<div align="center">
+  <h1>Samo TV</h1>
+  <p>一个干净、离线的电视桌面</p>
+  <p>
+    <a href="https://github.com/Samoyer/samo-tv/releases/latest">下载 APK</a> ·
+    <a href="#安装与设置">安装指南</a> ·
+    <a href="docs/BUILD.md">源码构建</a> ·
+    <a href="LICENSE">GPL 3.0</a>
+  </p>
+</div>
 
-面向电视遥控器操作的轻量原生 Android 启动器，提供离线海岸壁纸、常用应用和统一设置入口。
+![Samo TV 首页：海岸壁纸与常用应用](docs/images/home.png)
 
-项目使用 Java 与 Android 系统组件实现，不依赖第三方运行时库。应用不申请网络权限，不包含广告或统计 SDK，壁纸与应用偏好均保存在本地。
+<p align="center">界面示例截取自 1.3.2；当前版本为 1.3.3。</p>
 
-## 功能
+Samo TV 是面向电视遥控器的轻量 Android 启动器。把常用应用放在眼前，用方向键和确认键就能到达需要的地方。
 
-- **首页与常用应用**：随焦点显示应用名称和介绍，支持添加、移除常用应用，保存列表及顺序。
-- **应用列表**：五列网格，兼容电视与普通 Android 应用入口，支持方向键导航。
-- **统一设置**：集中提供电视设置、网络、应用管理和默认启动器入口。
-- **离线界面**：内置海岸壁纸，保留已安装应用的原始图标；焦点过渡遵循系统动画设置。
-- **可选主页适配**：在匹配的原桌面窗口出现时返回 Samo，需用户手动授权，可在应用内暂停。
+- **常用应用，一眼找到**：首页展示常用应用，支持添加、移除并保留列表顺序。
+- **为遥控器设计**：清晰的焦点反馈、五列应用网格，兼容电视与普通 Android 应用入口。
+- **离线也完整**：内置海岸壁纸，无广告，无统计 SDK，无网络权限。
+- **设置集中可达**：电视设置、网络、应用管理和默认启动器入口集中在一页。
+- **可选主页适配**：对受支持的厂商桌面提供主页返回适配，由用户授权，随时可暂停。
 
-## 版本与兼容性
+## 界面一览
 
-| 项目 | 当前配置 |
-| --- | --- |
-| 应用版本 | `1.3.3`（versionCode `7`） |
-| 包名 | `cn.samo.tv` |
-| 最低系统版本 | Android 6.0（API 23） |
-| 目标 SDK | API 28 |
-| 编译 SDK | API 35 |
-| Android Build Tools | `35.0.1` |
+### 全部应用
 
-最低系统版本表示安装门槛。默认桌面选择、无障碍服务和开机行为取决于设备系统，需在目标设备上检查兼容性。
+![Samo TV 全部应用：遥控器可导航的应用网格](docs/images/apps.png)
 
-主页适配仅支持代码中匹配的厂商桌面窗口，不是通用的主页键拦截方案，也不会自行更改系统默认桌面。
+五列网格展示已安装应用；长按确认键或按菜单键，即可管理常用应用或查看应用信息。
 
-## 构建
+### 设置
 
-### 环境要求
+![Samo TV 设置：系统设置和主页适配入口](docs/images/settings.png)
 
-- JDK 17。
-- Python 3.9 或更新版本。
-- Bash 与 `shasum`。
-- Android SDK：`platforms;android-35`、`build-tools;35.0.1`；安装到设备还需 `platform-tools`。
+常用系统入口集中呈现，主页适配状态可直接查看。
 
-仓库不包含 JDK、Android SDK 或预编译 APK，也不使用 Gradle。构建脚本使用 Android SDK 工具直接编译、打包和签名。
+三张界面示例均来自 1.3.2。截图中的第三方应用及图标仅展示已安装应用的效果，不随 Samo TV 捆绑提供。
 
-### 准备源码与 SDK
+## 下载
 
-```sh
-git clone https://github.com/Samoyer/samo-tv.git
-cd samo-tv
-```
+当前版本：**1.3.3**（versionCode `7`），包名 `cn.samo.tv`。支持 **Android 6.0 / API 23 及以上**。
 
-从 [Android 官方网站](https://developer.android.com/studio#command-tools) 获取 SDK Command-line Tools，并安装到所选 SDK 目录。
+- [下载 Samo TV 1.3.3 APK](https://github.com/Samoyer/samo-tv/releases/download/v1.3.3/samo-tv-1.3.3.apk)
+- [下载 SHA-256 校验文件](https://github.com/Samoyer/samo-tv/releases/download/v1.3.3/samo-tv-1.3.3.apk.sha256)
+- [查看发布记录与其他版本](https://github.com/Samoyer/samo-tv/releases)
 
-下面以仓库内的 `.tooling/android-sdk` 为例；如已有 SDK，可将 `ANDROID_SDK_ROOT` 指向其实际目录：
+将 APK 与校验文件放在同一目录，可运行：
 
 ```sh
-export JAVA_HOME="/absolute/path/to/jdk-17"
-export ANDROID_SDK_ROOT="$PWD/.tooling/android-sdk"
-
-"$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" \
-  "platforms;android-35" \
-  "build-tools;35.0.1" \
-  "platform-tools"
+shasum -a 256 -c samo-tv-1.3.3.apk.sha256
 ```
-
-将 `JAVA_HOME` 替换为本机 JDK 的实际目录，并按 `sdkmanager` 提示接受 SDK 许可。构建和测试均使用该 JDK。
-
-### 生成 APK
-
-```sh
-bash tools/build-apk.sh
-```
-
-脚本完成资源编译、Java 编译、D8 转换、APK 打包、对齐、签名和签名校验，输出：
-
-```text
-dist/samo-tv-debug.apk
-dist/samo-tv-debug.apk.sha256
-```
-
-首次构建会创建 `.tooling/debug.keystore`。后续覆盖安装需沿用同一签名，请妥善保存该文件。此密钥用于本地调试构建；密钥、构建产物与工具缓存均不纳入版本控制。
 
 ## 安装与设置
 
-### 安装应用
+### 安装 APK
 
-在电视上开启 ADB 调试，并允许当前电脑连接。将 Android SDK 的 `platform-tools` 加入 `PATH`：
+下载后，可通过电视的 APK 安装入口安装，或在电脑上使用 [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) 中的 ADB。
+
+开启电视的 ADB 调试并授权当前电脑，确认设备状态为 `device` 后执行：
 
 ```sh
-export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
 adb devices
-adb install -r dist/samo-tv-debug.apk
+adb install -r samo-tv-1.3.3.apk
 adb shell am start -n cn.samo.tv/.MainActivity
 ```
 
-确认设备状态为 `device` 后安装。若同时连接多台设备，请为命令添加 `-s <设备序列号>`。
+同时连接多台设备时，请在 `adb` 后添加 `-s <设备序列号>`。
 
-### 设置默认桌面
+### 设置主页
 
-进入 Samo 的「设置 → 默认启动器」，按系统提示选择 Samo TV。部分系统不提供该入口或不允许选择第三方桌面。
+1. 打开 Samo 的「设置 → 默认启动器」，按系统提示选择 Samo TV。
+2. 对于受支持的厂商桌面，也可进入「设置 → 主页键接管 → 系统无障碍设置」，手动启用 Samo TV 服务，并开启应用内接管开关。
+3. 使用遥控器检查主页键返回、应用启动和系统设置入口。
 
-### 启用可选主页适配
-
-对于受支持的厂商桌面，可进入「设置 → 主页键接管 → 系统无障碍设置」，手动启用 Samo TV 服务，并确认应用内接管开关已开启。
-
-授权后，请实际检查主页键返回、应用启动和系统设置入口。系统允许开启服务，并不代表当前桌面符合适配条件。
-
-接管逻辑包含开机补偿：仅在开机后 120 秒内、启动编号可读、服务已授权且应用开关开启时尝试启动；每种触发来源每次开机最多尝试一次，实际进入 Samo 后停止补偿。系统仍可能限制后台启动或撤销授权。
+部分系统不允许选择第三方默认桌面。可选主页适配仅匹配特定厂商桌面的窗口，不是通用的主页键拦截方案；安装门槛不代表所有设备的主页与开机行为均兼容。
 
 ### 恢复原桌面
 
-在「设置 → 主页键接管」中暂停接管，或在系统无障碍设置中关闭 Samo TV 服务。如果已将 Samo 设为默认桌面，再到系统默认启动器设置中选择原桌面。
+在「设置 → 主页键接管」中暂停接管，或在系统无障碍设置中关闭 Samo TV 服务。如果已更改默认桌面，再到系统默认启动器设置中选择原桌面。
 
 ## 遥控器操作
 
@@ -113,43 +85,25 @@ adb shell am start -n cn.samo.tv/.MainActivity
 | --- | --- |
 | 方向键 | 在首页、应用网格和设置间移动焦点 |
 | 确认键 | 打开选中应用或设置项 |
-| 长按确认键 / 菜单键 | 打开应用菜单，添加或移出常用、查看应用信息 |
+| 长按确认键 / 菜单键 | 添加或移出常用、查看应用信息 |
 | 返回键 | 关闭弹层或返回首页 |
-| 主页键 | 由系统默认桌面或已授权的主页适配决定返回位置 |
+| 主页键 | 按系统默认桌面或已授权的主页适配返回 |
 
-首页「全部应用」可进入应用网格，网格首行向上可返回顶部导航。常用应用允许保存为空，升级会保留已保存的列表和顺序。
-
-## 开发与测试
-
-在已设置 `JAVA_HOME` 的终端中运行：
-
-```sh
-bash tools/test-startup-policy.sh
-bash -n tools/build-apk.sh
-bash -n tools/test-startup-policy.sh
-```
-
-启动策略测试覆盖开机窗口、授权、暂停、重复触发，以及启动请求与实际进入应用的区分。上述检查不连接设备；遥控器导航、视觉效果、主页返回与开机行为需在目标设备上验证。
-
-```text
-app/src/main/
-├── AndroidManifest.xml
-├── java/cn/samo/tv/       # 启动器、主页适配与原生界面组件
-└── res/                  # 图标、壁纸、主题与服务声明
-tools/
-├── build-apk.sh          # APK 构建与签名
-├── test-startup-policy.sh
-└── tests/cn/samo/tv/      # 启动策略测试
-```
+首页「全部应用」进入应用网格，网格首行向上可返回顶部导航。常用应用允许保存为空，升级会保留已保存的列表及顺序。
 
 ## 隐私与权限
 
-- 普通应用权限仅有 `RECEIVE_BOOT_COMPLETED`，用于接收开机通知。
-- 可选主页适配服务由系统通过 `BIND_ACCESSIBILITY_SERVICE` 绑定，仅监听指定厂商桌面的窗口状态事件。
-- 服务不读取窗口内容、不过滤按键、不执行手势。
-- 不申请网络或悬浮窗权限，不上传应用列表与使用记录。
+- 应用不申请网络或悬浮窗权限，不上传应用列表与使用记录。
+- `RECEIVE_BOOT_COMPLETED` 用于接收开机通知；实际启动仍受系统限制。
+- 可选无障碍服务仅监听指定桌面的窗口状态事件，不读取窗口内容、不过滤按键、不执行手势。服务需手动授权，可随时关闭。
 
-## 设计与许可
+## 开发
+
+使用 Java 与 Android 系统组件实现，不依赖第三方运行时库，不使用 Gradle。
+
+完整的环境准备、SDK 安装、APK 构建、签名与测试说明见 [构建指南](docs/BUILD.md)。
+
+## 致谢与许可
 
 界面布局参考 [SunnyTV](https://github.com/xudong7587/SunnyTV) 与 Apple TV / tvOS 的视觉方向，采用独立原生实现，未引入参考项目的代码或演示素材。内置海岸壁纸由 AI 生成，随应用离线提供。
 
