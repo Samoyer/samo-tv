@@ -153,4 +153,6 @@ tools/
 
 界面布局参考 [SunnyTV](https://github.com/xudong7587/SunnyTV) 与 Apple TV / tvOS 的视觉方向，采用独立原生实现，未引入参考项目的代码或演示素材。内置海岸壁纸由 AI 生成，随应用离线提供。
 
-本项目采用 [MIT 许可证](LICENSE)。
+Copyright (C) 2026 Samoyer
+
+本项目采用 [GNU General Public License v3.0](LICENSE)（SPDX: `GPL-3.0-only`）。
